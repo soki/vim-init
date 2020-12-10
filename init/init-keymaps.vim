@@ -331,3 +331,12 @@ else
 endif
 
 
+:noremap 1t 1gt
+:noremap 2t 2gt
+:noremap 3t 3gt
+:noremap 4t 4gt
+:noremap 5t 5gt
+:noremap 6t 6gt
+:noremap 7t 7gt
+:noremap 8t 8gt
+:noremap 9t 9gt

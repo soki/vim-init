@@ -14,8 +14,8 @@
 " 默认情况下的分组，可以再前面覆盖之
 "----------------------------------------------------------------------
 if !exists('g:bundle_group')
-	let g:bundle_group = ['basic', 'tags', 'enhanced', 'filetypes', 'textobj']
-	let g:bundle_group += ['tags', 'airline', 'nerdtree', 'ale', 'echodoc']
+	let g:bundle_group = ['basic', 'enhanced', 'filetypes', 'textobj']
+	let g:bundle_group += ['airline', 'nerdtree', 'ale', 'echodoc']
 	let g:bundle_group += ['leaderf']
 endif
 
@@ -286,19 +286,16 @@ endif
 if index(g:bundle_group, 'airline') >= 0
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
-	let g:airline_left_sep = ''
-	let g:airline_left_alt_sep = ''
-	let g:airline_right_sep = ''
-	let g:airline_right_alt_sep = ''
-	let g:airline_powerline_fonts = 0
-	let g:airline_exclude_preview = 1
-	let g:airline_section_b = '%n'
-	let g:airline_theme='deus'
-	let g:airline#extensions#branch#enabled = 0
-	let g:airline#extensions#syntastic#enabled = 0
-	let g:airline#extensions#fugitiveline#enabled = 0
-	let g:airline#extensions#csv#enabled = 0
-	let g:airline#extensions#vimagit#enabled = 0
+
+    let g:airline_theme = "hybrid"
+    let g:airline_powerline_fonts = 1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#formatter = 'unique_tail'
+    let g:airline#extensions#tabline#show_tab_nr = 1
+    let g:airline#extensions#tabline#tab_nr_type= 1
+    let g:airline#extensions#tabline#show_tab_type = 0
+    let g:airline#extensions#tabline#left_sep = ' '
+    let g:airline#extensions#tabline#left_alt_sep = '|'
 endif
 
 
@@ -306,15 +303,39 @@ endif
 " NERDTree
 "----------------------------------------------------------------------
 if index(g:bundle_group, 'nerdtree') >= 0
-	Plug 'scrooloose/nerdtree', {'on': ['NERDTree', 'NERDTreeFocus', 'NERDTreeToggle', 'NERDTreeCWD', 'NERDTreeFind'] }
+    Plug 'preservim/nerdtree'
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'jistr/vim-nerdtree-tabs'
+
 	let g:NERDTreeMinimalUI = 1
 	let g:NERDTreeDirArrows = 1
 	let g:NERDTreeHijackNetrw = 0
+
+    let g:NERDTreeShowLineNumbers = 0
+    let g:NERDTreeAutoCenter = 1
+    let g:NERDTreeShowHidden = 1
+    let g:NERDTreeWinSize = 31
+    let g:NERDTreeIgnore = ['\.pyc','\~$','\.swp','\.DS_Store','\.svn','\.git']
+    let g:NERDTreeBookmarksFile = $HOME.'/.vimtmp/NerdBookmarks.txt'
+    let g:NERDTreeShowBookmarks = 1
+    let g:NERDTreeGitStatusIndicatorMapCustom = {
+        \ "Modified"  : "✹",
+        \ "Staged"    : "✚",
+        \ "Untracked" : "✭",
+        \ "Renamed"   : "➜",
+        \ "Unmerged"  : "═",
+        \ "Deleted"   : "✖",
+        \ "Dirty"     : "☻",
+        \ "Clean"     : "✔︎",
+        \ "Unknown"   : "?"
+        \ }
+    
 	noremap <space>nn :NERDTree<cr>
 	noremap <space>no :NERDTreeFocus<cr>
 	noremap <space>nm :NERDTreeMirror<cr>
-	noremap <space>nt :NERDTreeToggle<cr>
+	"noremap <space>nt :NERDTreeToggle<cr>
+	noremap <space>nt :NERDTreeTabsToggle<cr>
 endif
 
 
@@ -517,6 +538,26 @@ if index(g:bundle_group, 'leaderf') >= 0
 	endif
 endif
 
+
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+let g:go_list_type = 'quickfix'
+let g:go_fmt_command = 'goimports'
+let g:go_highlight_types = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_fields = 0
+let g:go_highlight_format_strings = 1
+
+Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'altercation/vim-colors-solarized'
+Plug 'Valloric/YouCompleteMe',{'do':'python3 install.py --go-completer'}
+Plug 'rking/ag.vim'
+
+let g:ag_working_path_mode="r"
 
 "----------------------------------------------------------------------
 " 结束插件安装

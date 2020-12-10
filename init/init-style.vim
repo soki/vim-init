@@ -25,9 +25,6 @@ set signcolumn=yes
 " 总是显示标签栏
 set showtabline=2
 
-" 设置显示制表符等隐藏字符
-set list
-
 " 右下角显示命令
 set showcmd
 
@@ -50,7 +47,7 @@ set background=dark
 set t_Co=256
 
 " 设置颜色主题，会在所有 runtimepaths 的 colors 目录寻找同名配置
-color desert256
+" color desert256
 
 
 "----------------------------------------------------------------------
@@ -287,5 +284,4 @@ set tabline=%!Vim_NeatTabLine()
 set guitablabel=%{Vim_NeatGuiTabLabel()}
 set guitabtooltip=%{Vim_NeatGuiTabTip()}
 
-
-
+colorscheme hybrid_material 
